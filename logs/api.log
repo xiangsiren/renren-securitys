@@ -1,0 +1,4 @@
+2018-07-16 19:03:39,003 [INFO] [main] io.renren.ApiApplication [StartupInfoLogger.java : 50] Starting ApiApplication on XB-20160511GVEI with PID 7836 (D:\BaiduYunDownload\java\boot\renren-security\renren-api\target\classes started by Administrator in D:\BaiduYunDownload\java\boot\renren-security)
+2018-07-16 19:03:39,015 [DEBUG] [main] io.renren.ApiApplication [StartupInfoLogger.java : 53] Running with Spring Boot v2.0.1.RELEASE, Spring v5.0.5.RELEASE
+2018-07-16 19:03:39,016 [INFO] [main] io.renren.ApiApplication [SpringApplication.java : 663] The following profiles are active: dev
+2018-07-16 19:03:39,100 [INFO] [main] o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext [AbstractApplicationContext.java : 590] Refreshing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@762ef0ea: startup date [Mon Jul 16 19:03:39 GMT+08:00 2018]; root of context hierarchy
