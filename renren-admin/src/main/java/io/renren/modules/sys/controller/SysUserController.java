@@ -28,6 +28,8 @@ import io.renren.modules.sys.entity.SysUserEntity;
 import io.renren.modules.sys.service.SysUserRoleService;
 import io.renren.modules.sys.service.SysUserService;
 import io.renren.modules.sys.shiro.ShiroUtils;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.apache.commons.lang.ArrayUtils;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,6 +48,7 @@ import java.util.Map;
  */
 @RestController
 @RequestMapping("/sys/user")
+@Api(tags = {"SysUserController"} ,description = "系统用户管理")
 public class SysUserController extends AbstractController {
 	@Autowired
 	private SysUserService sysUserService;
@@ -55,8 +58,9 @@ public class SysUserController extends AbstractController {
 	/**
 	 * 所有用户列表
 	 */
-	@RequestMapping("/list")
+	@GetMapping("/list")
 	@RequiresPermissions("sys:user:list")
+	@ApiOperation(value = "获取用户列表",notes = "用户列表")
 	public R list(@RequestParam Map<String, Object> params){
 		PageUtils page = sysUserService.queryPage(params);
 
@@ -96,8 +100,10 @@ public class SysUserController extends AbstractController {
 	/**
 	 * 用户信息
 	 */
-	@RequestMapping("/info/{userId}")
+
+	@GetMapping("/info/{userId}")
 	@RequiresPermissions("sys:user:info")
+	@ApiOperation(value = "获取用户信息",notes = "通过userId")
 	public R info(@PathVariable("userId") Long userId){
 		SysUserEntity user = sysUserService.selectById(userId);
 		

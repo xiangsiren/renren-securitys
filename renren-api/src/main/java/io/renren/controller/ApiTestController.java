@@ -5,12 +5,13 @@ import io.renren.annotation.Login;
 import io.renren.annotation.LoginUser;
 import io.renren.common.utils.R;
 import io.renren.entity.UserEntity;
+import io.renren.service.UserService;
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 import springfox.documentation.annotations.ApiIgnore;
 
 /**
@@ -24,6 +25,9 @@ import springfox.documentation.annotations.ApiIgnore;
 @RequestMapping("/api")
 @Api(tags="测试接口")
 public class ApiTestController {
+
+    @Autowired
+    UserService userService ;
 
     @Login
     @GetMapping("userInfo")
@@ -43,6 +47,17 @@ public class ApiTestController {
     @ApiOperation("忽略Token验证测试")
     public R notToken(){
         return R.ok().put("msg", "无需token也能访问。。。");
+    }
+
+
+    /**
+     * 根据用户信息表ID查询
+     */
+    @GetMapping("/query/{id}")
+    @ApiOperation(value = "/query/{id}",notes = "根据标签信息表ID查询",response = UserEntity.class)
+    public UserEntity query(@PathVariable Long id) {
+        UserEntity entity = userService.selectById(id);
+        return entity;
     }
 
 }

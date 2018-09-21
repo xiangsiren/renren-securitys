@@ -52,9 +52,9 @@ public class SwaggerConfig{
 
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
-            .title("人人开源")
-            .description("renren-admin文档")
-            .termsOfServiceUrl("http://www.renren.io")
+            .title("接口文档")
+            .description("开发文档")
+            .termsOfServiceUrl("http://www.api.io")
             .version("3.2.0")
             .build();
     }

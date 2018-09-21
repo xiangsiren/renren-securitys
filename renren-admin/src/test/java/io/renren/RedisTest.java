@@ -2,6 +2,7 @@ package io.renren;
 
 import io.renren.common.utils.RedisUtils;
 import io.renren.modules.sys.entity.SysUserEntity;
+import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang.builder.ToStringBuilder;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -20,8 +21,10 @@ public class RedisTest {
         SysUserEntity user = new SysUserEntity();
         user.setEmail("123456@qq.com");
         redisUtils.set("user", user);
+        String str = "fsdsdfsdf";
 
         System.out.println(ToStringBuilder.reflectionToString(redisUtils.get("user", SysUserEntity.class)));
     }
+
 
 }

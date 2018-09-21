@@ -42,7 +42,11 @@ public class SysConfigServiceImpl extends ServiceImpl<SysConfigDao, SysConfigEnt
 
 	@Override
 	public PageUtils queryPage(Map<String, Object> params) {
+
 		String paramKey = (String)params.get("paramKey");
+		if (paramKey == null){
+			throw new RRException("慕容测试报错问题");
+		}
 
 		Page<SysConfigEntity> page = this.selectPage(
 				new Query<SysConfigEntity>(params).getPage(),

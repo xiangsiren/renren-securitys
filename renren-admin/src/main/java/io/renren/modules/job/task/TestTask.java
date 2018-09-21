@@ -22,7 +22,11 @@ import org.apache.commons.lang.builder.ToStringBuilder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /**
  * 测试定时任务(演示Demo，可删除)
@@ -34,6 +38,7 @@ import org.springframework.stereotype.Component;
  */
 @Component("testTask")
 public class TestTask {
+	private static final SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 	private Logger logger = LoggerFactory.getLogger(getClass());
 	
 	@Autowired
@@ -56,5 +61,17 @@ public class TestTask {
 	
 	public void test2(){
 		logger.info("我是不带参数的test2方法，正在被执行");
+	}
+
+	public void test3(){
+		System.out.println("时间 ： "+ simpleDateFormat.format(new Date()));
+	}
+
+	/**
+	 * 定义每三秒执行任务
+	 */
+	@Scheduled(fixedRate = 3000)
+	public void testScheldule(){
+		System.out.println("当前时间 ： "+simpleDateFormat.format(new Date()));
 	}
 }
