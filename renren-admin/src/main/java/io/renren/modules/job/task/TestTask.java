@@ -64,13 +64,14 @@ public class TestTask {
 	}
 
 	public void test3(){
+		logger.debug("aaaaaaaaaaaaaaaaaaaa");
 		System.out.println("时间 ： "+ simpleDateFormat.format(new Date()));
 	}
 
 	/**
 	 * 定义每三秒执行任务
 	 */
-	@Scheduled(fixedRate = 3000)
+//	@Scheduled(fixedRate = 3000)
 	public void testScheldule(){
 		System.out.println("当前时间 ： "+simpleDateFormat.format(new Date()));
 	}

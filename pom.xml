@@ -148,6 +148,17 @@
             <artifactId>joda-time</artifactId>
             <version>${joda.time.version}</version>
         </dependency>
+        <!--websocket 消息推送-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-websocket</artifactId>
+        </dependency>
+        <!--<dependency>-->
+            <!--<groupId>org.yeauty</groupId>-->
+            <!--<artifactId>netty-websocket-spring-boot-starter</artifactId>-->
+            <!--<version>0.7.1</version>-->
+        <!--</dependency>-->
+
     </dependencies>
 
     <!-- 阿里云maven仓库 -->

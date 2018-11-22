@@ -25,6 +25,8 @@ import io.renren.modules.sys.entity.SysConfigEntity;
 import io.renren.modules.sys.service.SysConfigService;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CachePut;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
@@ -59,9 +61,10 @@ public class SysConfigController extends AbstractController {
 	 */
 	@RequestMapping("/info/{id}")
 	@RequiresPermissions("sys:config:info")
+	@Cacheable(value = "demo",key = "#id")
 	public R info(@PathVariable("id") Long id){
 		SysConfigEntity config = sysConfigService.selectById(id);
-		
+		logger.debug("bbbbbbbbbbbbbb");
 		return R.ok().put("config", config);
 	}
 	
@@ -85,9 +88,10 @@ public class SysConfigController extends AbstractController {
 	@SysLog("修改配置")
 	@RequestMapping("/update")
 	@RequiresPermissions("sys:config:update")
+	@CachePut(value = "demo",key = "#config.id")
 	public R update(@RequestBody SysConfigEntity config){
 		ValidatorUtils.validateEntity(config);
-		
+
 		sysConfigService.update(config);
 		
 		return R.ok();
@@ -101,7 +105,7 @@ public class SysConfigController extends AbstractController {
 	@RequiresPermissions("sys:config:delete")
 	public R delete(@RequestBody Long[] ids){
 		sysConfigService.deleteBatch(ids);
-		
+
 		return R.ok();
 	}
 

@@ -20,6 +20,7 @@ import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.annotations.TableName;
 
 import javax.validation.constraints.NotBlank;
+import java.io.Serializable;
 
 /**
  * 系统配置信息
@@ -29,7 +30,9 @@ import javax.validation.constraints.NotBlank;
  * @date 2016年12月4日 下午6:43:36
  */
 @TableName("sys_config")
-public class SysConfigEntity {
+public class SysConfigEntity implements Serializable {
+	public static final long serialVersionUID = 1L ;
+
 	@TableId
 	private Long id;
 	@NotBlank(message="参数名不能为空")

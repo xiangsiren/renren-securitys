@@ -4,6 +4,7 @@ package io.renren.controller;
 import io.renren.annotation.Login;
 import io.renren.annotation.LoginUser;
 import io.renren.common.utils.R;
+import io.renren.config.WebSocketServer;
 import io.renren.entity.UserEntity;
 import io.renren.service.UserService;
 import io.swagger.annotations.Api;
@@ -11,8 +12,14 @@ import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import springfox.documentation.annotations.ApiIgnore;
+
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * 测试接口
@@ -58,6 +65,20 @@ public class ApiTestController {
     public UserEntity query(@PathVariable Long id) {
         UserEntity entity = userService.selectById(id);
         return entity;
+    }
+
+    @RequestMapping(value="/pushVideoListToWeb",method=RequestMethod.GET,consumes = "application/json")
+    public @ResponseBody
+    Map<String,Object> pushVideoListToWeb(@RequestBody String param) {
+        Map<String,Object> result =new HashMap<>();
+
+        try {
+            WebSocketServer.sendInfo("有新客户呼入,sltAccountId:"+ param + "sltAccountId");
+            result.put("operationResult", true);
+        }catch (IOException e) {
+            result.put("operationResult", true);
+        }
+        return result;
     }
 
 }
