@@ -24,5 +24,15 @@
 	<build>
 		<finalName>${project.artifactId}</finalName>
 	</build>
+	<distributionManagement>
+		<snapshotRepository>
+			<id>user-snapshots</id>
+			<url>http://121.41.2.20:8081/nexus/content/repositories/snapshots</url>
+		</snapshotRepository>
+		<repository>
+			<id>user-release</id>
+			<url>http://121.41.2.20:8081/nexus/content/repositories/releases</url>
+		</repository>
+	</distributionManagement>
 
 </project>
